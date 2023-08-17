@@ -143,7 +143,6 @@ public class Parser {
             } while (match(TokenType.COMMA));
         }
         consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.");
-
         consume(TokenType.LEFT_BRACE, "Expect '{' before " + kind + " body.");
         List<Stmt> body = block();
         return new Stmt.Function(name, parameters, body);
@@ -255,7 +254,7 @@ public class Parser {
 
     private Expr finishCall(Expr callee){
         List<Expr> arguments = new ArrayList<>();
-        if(!check(TokenType.LEFT_PAREN)){
+        if(!check(TokenType.RIGHT_PAREN)){
             do {
                 if (arguments.size() >= 255) error(peek(), "Can't have more than 255 arguments.");
                 arguments.add(expression());
