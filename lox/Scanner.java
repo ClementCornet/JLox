@@ -94,7 +94,7 @@ public class Scanner {
                 } else if (isAlpha(c)){
                     identifier();
                 } else{
-                    Lox.error(line, "Unexpected character.");
+                    Lox.error(new Token(TokenType.EOF, null, c, line), "Unexpected character.");
                 }
         }
     }
@@ -124,7 +124,7 @@ public class Scanner {
             advance();
         }
         if (isAtEnd()){
-            Lox.error(line, "Unterminated string");
+            Lox.error(new Token(TokenType.EOF, null, '\0', line), "Unterminated string");
             return;
         }
         advance();
@@ -139,7 +139,7 @@ public class Scanner {
             advance();
         }
         if (isAtEnd()){
-            Lox.error(line, "Unterminated string");
+            Lox.error(new Token(TokenType.EOF, null, '\0', line), "Unterminated string");
             return;
         }
         advance();
